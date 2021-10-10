@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -40,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     WallpaperAdapter wallpaperAdapter;
     List<WallpaperModel> wallpaperModelList;
     int pageNumber = 1;
-
+    EditText searchET;
+    String mediumUrl;
     Boolean isScrolling  = false;
     int currentItems,totalItems,scrollOutItems;
     String url ="https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query=nature";
@@ -80,49 +82,46 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isScrolling && (currentItems+scrollOutItems==totalItems)){
                     isScrolling = false;
-                    fetchWallpaper();
+                    getWallpaperData();
                 }
-
-
             }
         });
 
 
-        fetchWallpaper();
+        getWallpaperData();
 
     }
 
-    public void fetchWallpaper(){
+    public void getWallpaperData(){
 
         StringRequest request = new StringRequest(Request.Method.GET,url ,
                 new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+            @Override
+                public void onResponse(String response) {
 
-                        try{
-                            JSONObject jsonObject = new JSONObject(response);
+                    try{
+                        JSONObject jsonObject = new JSONObject(response);
 
-                            JSONArray jsonArray= jsonObject.getJSONArray("photos");
+                        JSONArray jsonArray= jsonObject.getJSONArray("photos");
 
-                            int length = jsonArray.length();
+                        int length = jsonArray.length();
 
-                            for(int i=0;i<length;i++){
+                        for(int i=0;i<length;i++){
 
-                                JSONObject object = jsonArray.getJSONObject(i);
+                            JSONObject object = jsonArray.getJSONObject(i);
 
-                                int id = object.getInt("id");
+                            int id = object.getInt("id");
 
-                                JSONObject objectImages = object.getJSONObject("src");
+                            JSONObject objectImages = object.getJSONObject("src");
 
-                                String orignalUrl = objectImages.getString("original");
-                                String mediumUrl = objectImages.getString("medium");
-
-                                WallpaperModel wallpaperModel = new WallpaperModel(id,orignalUrl,mediumUrl);
-                                wallpaperModelList.add(wallpaperModel);
+                            String orignalUrl = objectImages.getString("original");
+                             mediumUrl = objectImages.getString("medium");
 
 
+                            WallpaperModel wallpaperModel = new WallpaperModel(id,orignalUrl,mediumUrl);
+                            wallpaperModelList.add(wallpaperModel);
 
-                            }
+                        }
 
                             wallpaperAdapter.notifyDataSetChanged();
                             pageNumber++;
@@ -156,53 +155,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
-        return super.onCreateOptionsMenu(menu);
+    public void searchBtnEvent(View view){
+        searchET=findViewById(R.id.searchET);
+
+        String query = searchET.getText().toString().toLowerCase();
+
+        url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
+        wallpaperModelList.clear();
+        getWallpaperData();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public void refreshBtnEvent(View view){
+        String query= "nature";
 
-        if(item.getItemId()==R.id.nav_search){
+        url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
+        wallpaperModelList.clear();
+        getWallpaperData();
 
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            final EditText editText = new EditText(this);
-            editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
-            alert.setMessage("Enter Category e.g. Nature");
-            alert.setTitle("Search Wallpaper");
-
-            alert.setView(editText);
-
-            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                    String query = editText.getText().toString().toLowerCase();
-
-                    url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
-                    wallpaperModelList.clear();
-                    fetchWallpaper();
-
-                }
-            });
-
-            alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            });
-
-            alert.show();
-
-
-
-        }
-
-        return super.onOptionsItemSelected(item);
+        searchET.setText("");
     }
 }

@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -31,7 +32,6 @@ public class FullScreenWallpaper extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_screen_wallpaper);
 
-        getSupportActionBar().hide();
         Intent intent =  getIntent();
         originalUrl = intent.getStringExtra("originalUrl");
         photoView = findViewById(R.id.photoView);

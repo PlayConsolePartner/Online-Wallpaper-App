@@ -17,20 +17,41 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="20dp"
         app:cardCornerRadius="20dp"
-        android:elevation="10dp">
+        android:elevation="30dp">
 
         <EditText
+            android:id="@+id/searchET"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:singleLine="true"
-            android:paddingHorizontal="20dp"/>
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/edit_search_bg"
+            android:hint="Search category e.g food, texture etc" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_search_24"
+            android:orientation="horizontal"
             android:layout_gravity="right"
-            android:backgroundTint="@color/white"/>
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_search_24"
+                android:backgroundTint="@color/white"
+                android:onClick="searchBtnEvent"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_refresh_24"
+                android:layout_gravity="right"
+                android:backgroundTint="@color/white"
+                android:onClick="refreshBtnEvent" />
+        </LinearLayout>
+
+
 
     </androidx.cardview.widget.CardView>
 
