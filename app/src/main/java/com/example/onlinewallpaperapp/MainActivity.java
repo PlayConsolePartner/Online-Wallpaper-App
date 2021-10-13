@@ -11,11 +11,15 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -37,6 +41,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    ProgressBar progressBar;
     RecyclerView recyclerView;
     WallpaperAdapter wallpaperAdapter;
     List<WallpaperModel> wallpaperModelList;
@@ -45,16 +50,26 @@ public class MainActivity extends AppCompatActivity {
     String mediumUrl;
     Boolean isScrolling  = false;
     int currentItems,totalItems,scrollOutItems;
-    String url ="https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query=nature";
+    String url ="https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query=greenery";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        initialize();
+
+        RecViewfun();
+
+        getWallpaperData();
+
+        editSearch();
+
+    }
+
+    private void RecViewfun() {
         wallpaperModelList = new ArrayList<>();
-        wallpaperAdapter = new WallpaperAdapter(this,wallpaperModelList);
+        wallpaperAdapter = new WallpaperAdapter(this,wallpaperModelList, progressBar);
 
         recyclerView.setAdapter(wallpaperAdapter);
 
@@ -86,10 +101,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void initialize() {
+        searchET=findViewById(R.id.searchET);
+        recyclerView = findViewById(R.id.recyclerView);
+        progressBar=findViewById(R.id.progressBar);
+    }
 
-        getWallpaperData();
-
+    private void editSearch() {
+        searchET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String query= "nature";
+                    url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
+                    wallpaperModelList.clear();
+                    getWallpaperData();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void getWallpaperData(){
@@ -114,11 +147,11 @@ public class MainActivity extends AppCompatActivity {
 
                             JSONObject objectImages = object.getJSONObject("src");
 
-                            String orignalUrl = objectImages.getString("original");
-                             mediumUrl = objectImages.getString("medium");
+                            String originalUrl = objectImages.getString("portrait");
+                             mediumUrl = objectImages.getString("portrait");
 
 
-                            WallpaperModel wallpaperModel = new WallpaperModel(id,orignalUrl,mediumUrl);
+                            WallpaperModel wallpaperModel = new WallpaperModel(id,originalUrl,mediumUrl);
                             wallpaperModelList.add(wallpaperModel);
 
                         }
@@ -155,23 +188,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void searchBtnEvent(View view){
-        searchET=findViewById(R.id.searchET);
+    public void searchBtnEvent(View view) {
 
-        String query = searchET.getText().toString().toLowerCase();
+        if (searchET.getText().toString().equals("")) {
+            Toast.makeText(this, "Type something like nature, texture etc", Toast.LENGTH_SHORT).show();
+        } else {
 
-        url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
-        wallpaperModelList.clear();
-        getWallpaperData();
+            try {
+                String query = searchET.getText().toString().toLowerCase();
+
+                url = "https://api.pexels.com/v1/search/?page=" + pageNumber + "&per_page=80&query=" + query;
+                wallpaperModelList.clear();
+                getWallpaperData();
+            } catch (Exception e) {
+                Log.d("tag", e.toString());
+            }
+        }
+
+
     }
 
     public void refreshBtnEvent(View view){
-        String query= "nature";
-
-        url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
-        wallpaperModelList.clear();
-        getWallpaperData();
-
-        searchET.setText("");
+        try{
+            String query= "greenery";
+            url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
+            wallpaperModelList.clear();
+            getWallpaperData();
+            searchET.getText().clear();
+        }catch (Exception e){
+            Log.d("tag", e.toString());
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,10 +20,12 @@ public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperViewHolder> 
 
     private Context context;
     private List<WallpaperModel> wallpaperModelList;
+    ProgressBar progressBar;
 
-    public WallpaperAdapter(Context context, List<WallpaperModel> wallpaperModelList) {
+    public WallpaperAdapter(Context context, List<WallpaperModel> wallpaperModelList, ProgressBar progressBar) {
         this.context = context;
         this.wallpaperModelList = wallpaperModelList;
+        this.progressBar=progressBar;
     }
 
     @NonNull
@@ -36,6 +39,9 @@ public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperViewHolder> 
     public void onBindViewHolder(@NonNull WallpaperViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Glide.with(context).load(wallpaperModelList.get(position).getMediumUrl()).into(holder.imageView);
+
+        progressBar.setVisibility(View.GONE);
+
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

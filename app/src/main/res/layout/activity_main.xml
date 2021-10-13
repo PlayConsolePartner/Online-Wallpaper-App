@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/theme_color"/>
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -24,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:singleLine="true"
+            android:imeOptions="actionSearch"
             android:paddingHorizontal="20dp"
             android:background="@drawable/edit_search_bg"
             android:hint="Search category e.g food, texture etc" />
