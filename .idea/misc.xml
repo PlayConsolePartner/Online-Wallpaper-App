@@ -4,18 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/button_rounded_corner.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/button_shape.xml" value="0.2203125" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/circular_button.xml" value="0.2169230769230769" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/download_icon.xml" value="0.2169230769230769" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/edit_search_bg.xml" value="0.2203125" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.2169230769230769" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2203125" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/ic_outline_cancel_24.xml" value="0.2203125" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/ic_sharp_arrow_downward_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/drawable/native_ad_helper.xml" value="0.2203125" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/layout/activity_exit_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/layout/activity_full_screen_wallpaper.xml" value="0.22" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/layout/edit_search_bg.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/layout/image_item.xml" value="0.2" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/layout/native_ad_halper.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/OnlineWallpaperApp/app/src/main/res/menu/main.xml" value="0.2" />
       </map>
     </option>

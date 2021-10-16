@@ -7,6 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.onlinewallpaperapp"
+        multiDexEnabled true
         minSdk 16
         targetSdk 30
         versionCode 1
@@ -40,4 +41,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.android.volley:volley:1.1.1'
+
+    implementation 'com.google.android.gms:play-services-ads:20.4.0'
+
+    implementation 'com.artjimlop:altex-image-downloader:0.0.4'
 }

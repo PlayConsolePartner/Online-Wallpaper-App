@@ -1,29 +1,45 @@
 package com.example.onlinewallpaperapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.artjimlop.altex.AltexImageDownloader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,6 +52,11 @@ public class FullScreenWallpaper extends AppCompatActivity {
     PhotoView photoView;
     ProgressBar progressBar;
     int checkImage=0;
+    private InterstitialAd mInterstitialAd;
+    private String inter_unit_id;
+    Google_Ads google_ads;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,18 +83,30 @@ public class FullScreenWallpaper extends AppCompatActivity {
             }
         }).into(photoView);
 
-
-
     }
 
+
+
     private void initialize() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+
         photoView = findViewById(R.id.photoView);
         progressBar=findViewById(R.id.progressBar);
+        inter_unit_id= getResources().getString(R.string.interstitial_unit_id);
+
+        google_ads= new Google_Ads(this);
+        google_ads.loadInterstitial();
     }
 
     public void SetWallpaperEvent(View view) {
 
         if(checkImage==1){
+
+            google_ads.showInterstitial(this);
+
             WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
             Bitmap bitmap  = ((BitmapDrawable)photoView.getDrawable()).getBitmap();
             try {
@@ -92,16 +125,25 @@ public class FullScreenWallpaper extends AppCompatActivity {
     public void DownloadWallpaperEvent(View view) {
 
         if(checkImage ==1){
-            DownloadManager downloadManager = (DownloadManager)getSystemService(Context.DOWNLOAD_SERVICE);
-            Uri uri = Uri.parse(originalUrl);
-            DownloadManager.Request request = new DownloadManager.Request(uri);
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            downloadManager.enqueue(request);
-            Toast.makeText(this, "Downloading Start", Toast.LENGTH_LONG).show();
+
+            if (ContextCompat.checkSelfPermission(FullScreenWallpaper.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(FullScreenWallpaper.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(FullScreenWallpaper.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
+                ActivityCompat.requestPermissions(FullScreenWallpaper.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
+                Toast.makeText(FullScreenWallpaper.this, "Need Permission to access storage for Downloading Image", Toast.LENGTH_SHORT).show();
+            } else {
+               google_ads.showInterstitial(this);
+
+                Toast.makeText(FullScreenWallpaper.this, "Downloading Image...", Toast.LENGTH_SHORT).show();
+
+                AltexImageDownloader.writeToDisk(this, originalUrl, "IMAGES");
+            }
         }
         else{
             Toast.makeText(this, "Image not loaded yet!", Toast.LENGTH_SHORT).show();
         }
 
     }
+
+
 }

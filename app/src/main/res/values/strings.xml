@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Online Wallpaper App</string>
+
+    <!--    Test Ads Ids-->
+
+    <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="banner_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="native_unit_id">ca-app-pub-3940256099942544/2247696110</string>
+
+
+    <!--    Real Ids-->
+
+    <!--        <string name="app_id">ca-app-pub-7999230940385436~3040660023</string>-->
+    <!--        <string name="banner_unit_id">ca-app-pub-7999230940385436/1536006666</string>-->
+    <!--        <string name="interstitial_unit_id">ca-app-pub-7999230940385436/5312611903</string>-->
+    <!--        <string name="native_unit_id">ca-app-pub-7999230940385436/7687493805</string>-->
 </resources>

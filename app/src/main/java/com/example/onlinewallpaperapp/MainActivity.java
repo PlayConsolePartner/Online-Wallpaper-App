@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +47,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    AdView banner_adview;
     ProgressBar progressBar;
     RecyclerView recyclerView;
     WallpaperAdapter wallpaperAdapter;
@@ -65,7 +72,23 @@ public class MainActivity extends AppCompatActivity {
 
         editSearch();
 
+        //banner ad
+        Google_Ads google_ads=new Google_Ads(this);
+        google_ads.bannerLoad(banner_adview);
+
     }
+
+//    private void Load_banner_ad() {
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
+//
+//        banner_adview = findViewById(R.id.banner_adview);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        banner_adview.loadAd(adRequest);
+//    }
 
     private void RecViewfun() {
         wallpaperModelList = new ArrayList<>();
@@ -107,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         searchET=findViewById(R.id.searchET);
         recyclerView = findViewById(R.id.recyclerView);
         progressBar=findViewById(R.id.progressBar);
+        banner_adview=findViewById(R.id.banner_adview);
     }
 
     private void editSearch() {
@@ -218,5 +242,13 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             Log.d("tag", e.toString());
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent= new Intent(this, Exit_Screen.class);
+        startActivity(intent);
     }
 }
