@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,11 +31,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +50,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+
 public class MainActivity extends AppCompatActivity {
 
     AdView banner_adview;
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     WallpaperAdapter wallpaperAdapter;
     List<WallpaperModel> wallpaperModelList;
     int pageNumber = 1;
+    private MeowBottomNavigation bnv_Main;
     EditText searchET;
     String mediumUrl;
     Boolean isScrolling  = false;
@@ -71,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
         getWallpaperData();
 
         editSearch();
+
+        bottomNavMenu();
+
+        navbarInvibile();
 
         //banner ad
         Google_Ads google_ads=new Google_Ads(this);
@@ -131,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         progressBar=findViewById(R.id.progressBar);
         banner_adview=findViewById(R.id.banner_adview);
+        bnv_Main=findViewById(R.id.bnv_Main);
     }
 
     private void editSearch() {
@@ -243,6 +257,71 @@ public class MainActivity extends AppCompatActivity {
             Log.d("tag", e.toString());
         }
     }
+
+    private void bottomNavMenu() {
+        bnv_Main.add(new MeowBottomNavigation.Model(1, R.drawable.ic_privacy_policy));
+        bnv_Main.add(new MeowBottomNavigation.Model(2, R.drawable.ic_rate_us));
+        bnv_Main.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_share_24));
+
+
+        bnv_Main.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
+            @Override
+            public Unit invoke(MeowBottomNavigation.Model model) {
+                switch (model.getId()) {
+
+                    case 1:
+                        Uri uri = Uri.parse("https://www.google.com");
+                     Intent   intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                        break;
+
+                    case 2:
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+ getApplicationContext().getPackageName())));
+
+                        break;
+
+                    case 3:
+                        try {
+                            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                            shareIntent.setType("text/plain");
+                            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "");
+                            String shareMessage = "\nTry this wonderful application\n\n";
+                            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName() + "\n\n";
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                            startActivity(Intent.createChooser(shareIntent, "choose one"));
+                        } catch (Exception e) {
+                            //e.toString();
+                        }
+                        break;
+
+
+
+                }
+                return null;
+            }
+        });
+    }
+
+    private void navbarInvibile() {
+        KeyboardVisibilityEvent.setEventListener(
+                this,
+                new KeyboardVisibilityEventListener() {
+                    @Override
+                    public void onVisibilityChanged(boolean isOpen) {
+                        Log.d("TAG","onVisibilityChanged: Keyboard visibility changed");
+                        if(isOpen){
+                            Log.d("TAG", "onVisibilityChanged: Keyboard is open");
+                            bnv_Main.setVisibility(View.GONE);
+                            Log.d("TAG", "onVisibilityChanged: NavBar got Invisible");
+                        }else{
+                            Log.d("TAG", "onVisibilityChanged: Keyboard is closed");
+                            bnv_Main.setVisibility(View.VISIBLE);
+                            Log.d("TAG", "onVisibilityChanged: NavBar got Visible");
+                        }
+                    }
+                });
+    }
+
 
     @Override
     public void onBackPressed() {

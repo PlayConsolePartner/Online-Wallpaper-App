@@ -44,5 +44,13 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-ads:20.4.0'
 
+    //image downloader
     implementation 'com.artjimlop:altex-image-downloader:0.0.4'
+
+    //bottom navigation menu
+    implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61"
+
+    //nav visibility with keyboard
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
 }

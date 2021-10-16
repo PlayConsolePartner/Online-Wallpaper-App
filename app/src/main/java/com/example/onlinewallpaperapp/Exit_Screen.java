@@ -5,9 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class Exit_Screen extends Native_Ad_Class {
   Button btn_exit, btn_RateUs;
+  ImageButton btn_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class Exit_Screen extends Native_Ad_Class {
     private void initialize() {
         btn_exit=findViewById(R.id.btn_exit);
         btn_RateUs=findViewById(R.id.btn_RateUs);
+        btn_cancel=findViewById(R.id.btn_cancel);
 
     }
 
@@ -43,6 +46,13 @@ public class Exit_Screen extends Native_Ad_Class {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getApplicationContext().getPackageName())));
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
