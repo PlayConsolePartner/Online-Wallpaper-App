@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     String mediumUrl;
     Boolean isScrolling  = false;
     int currentItems,totalItems,scrollOutItems;
-    String url ="https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query=greenery";
+    String url ="https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query=nature wallpaper";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,17 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    private void Load_banner_ad() {
-//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-//            @Override
-//            public void onInitializationComplete(InitializationStatus initializationStatus) {
-//            }
-//        });
-//
-//        banner_adview = findViewById(R.id.banner_adview);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        banner_adview.loadAd(adRequest);
-//    }
 
     private void RecViewfun() {
         wallpaperModelList = new ArrayList<>();
@@ -151,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
         searchET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    String query= "nature";
+                if (actionId == EditorInfo.IME_ACTION_SEARCH && searchET.getText().toString().trim().length() >0) {
+                    String query= searchET.getText().toString();
                     url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
                     wallpaperModelList.clear();
                     getWallpaperData();
@@ -248,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void refreshBtnEvent(View view){
         try{
-            String query= "greenery";
+            String query= "nature wallpaper";
             url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
             wallpaperModelList.clear();
             getWallpaperData();
