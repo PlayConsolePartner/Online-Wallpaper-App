@@ -1,4 +1,4 @@
-package com.example.onlinewallpaperapp;
+package com.example.trending_wallpapers_2021;
 
 import android.content.Context;
 

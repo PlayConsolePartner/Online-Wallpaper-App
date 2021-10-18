@@ -1,4 +1,4 @@
-package com.example.onlinewallpaperapp;
+package com.example.trending_wallpapers_2021;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.trending_wallpapers_2021.R;
 
 public class Exit_Screen extends Native_Ad_Class {
   Button btn_exit, btn_RateUs;

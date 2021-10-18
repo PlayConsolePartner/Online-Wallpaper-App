@@ -1,4 +1,4 @@
-package com.example.onlinewallpaperapp;
+package com.example.trending_wallpapers_2021;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+
+import com.example.trending_wallpapers_2021.R;
 
 public class Splash_Screen extends AppCompatActivity {
 

@@ -1,21 +1,15 @@
-package com.example.onlinewallpaperapp;
+package com.example.trending_wallpapers_2021;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
@@ -32,11 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.google.android.gms.ads.AdRequest;
+import com.example.trending_wallpapers_2021.R;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
@@ -66,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     String mediumUrl;
     Boolean isScrolling  = false;
     int currentItems,totalItems,scrollOutItems;
+    private String privacy_policy=null;
     String url ="https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query=nature wallpaper";
 
     @Override
@@ -134,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar);
         banner_adview=findViewById(R.id.banner_adview);
         bnv_Main=findViewById(R.id.bnv_Main);
+       privacy_policy= getResources().getString(R.string.Privacy_Policy);
     }
 
     private void editSearch() {
@@ -259,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (model.getId()) {
 
                     case 1:
-                        Uri uri = Uri.parse("https://www.google.com");
+                        Uri uri = Uri.parse(privacy_policy);
                      Intent   intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;

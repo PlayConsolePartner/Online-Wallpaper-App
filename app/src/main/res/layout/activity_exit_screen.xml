@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Exit_Screen"
+    tools:context="com.example.trending_wallpapers_2021.Exit_Screen"
     android:orientation="vertical">
 
     <LinearLayout
