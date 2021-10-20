@@ -1,4 +1,4 @@
-package com.example.trending_wallpapers_2021;
+package com.onex.trending_wallpapers_2021;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +23,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.trending_wallpapers_2021.R;
+import com.onex.trending_wallpapers_2021.R;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;

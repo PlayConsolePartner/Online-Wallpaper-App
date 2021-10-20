@@ -1,4 +1,4 @@
-package com.example.trending_wallpapers_2021;
+package com.onex.trending_wallpapers_2021;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.trending_wallpapers_2021.R;
+import com.onex.trending_wallpapers_2021.R;
 import com.google.android.gms.ads.AdView;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;

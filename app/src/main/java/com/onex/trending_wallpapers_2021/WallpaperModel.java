@@ -1,4 +1,4 @@
-package com.example.trending_wallpapers_2021;
+package com.onex.trending_wallpapers_2021;
 
 public class WallpaperModel {
     private int id;

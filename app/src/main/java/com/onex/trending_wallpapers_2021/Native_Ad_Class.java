@@ -1,4 +1,4 @@
-package com.example.trending_wallpapers_2021;
+package com.onex.trending_wallpapers_2021;
 
 import android.content.Context;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.trending_wallpapers_2021.R;
+import com.onex.trending_wallpapers_2021.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;

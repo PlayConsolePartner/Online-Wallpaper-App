@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.trending_wallpapers_2021.MainActivity">
+    tools:context="com.example.trending_wallpapers_2021.com.onex.trending_wallpapers_2021.MainActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"

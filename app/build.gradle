@@ -6,7 +6,7 @@ android {
     compileSdk 30
 
     defaultConfig {
-        applicationId "com.example.trending_wallpapers_2021"
+        applicationId "com.onex.trending_wallpapers_2021"
         multiDexEnabled true
         minSdk 16
         targetSdk 30

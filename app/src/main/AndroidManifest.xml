@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.trending_wallpapers_2021">
+    package="com.onex.trending_wallpapers_2021">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineWallpaperApp">
         <activity
-            android:name="com.example.trending_wallpapers_2021.Exit_Screen"
+            android:name="com.onex.trending_wallpapers_2021.Exit_Screen"
             android:exported="true" />
         <activity
-            android:name="com.example.trending_wallpapers_2021.MainActivity"
+            android:name="com.onex.trending_wallpapers_2021.MainActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.trending_wallpapers_2021.FullScreenWallpaper"
+            android:name="com.onex.trending_wallpapers_2021.FullScreenWallpaper"
             android:exported="true" />
         <activity
-            android:name="com.example.trending_wallpapers_2021.Splash_Screen"
+            android:name="com.onex.trending_wallpapers_2021.Splash_Screen"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
