@@ -11,10 +11,10 @@
 
     <!--    Real Ids-->
 
-            <string name="app_id">ca-app-pub-7999230940385436~3040660023</string>
-            <string name="banner_unit_id">ca-app-pub-7999230940385436/1536006666</string>
-            <string name="interstitial_unit_id">ca-app-pub-7999230940385436/5312611903</string>
-            <string name="native_unit_id">ca-app-pub-7999230940385436/7687493805</string>
+            <string name="app_id">ca-app-pub-1845012817213961~1642143404</string>
+            <string name="banner_unit_id">ca-app-pub-1845012817213961/1133031034</string>
+            <string name="interstitial_unit_id">ca-app-pub-1845012817213961/4689132662</string>
+            <string name="native_unit_id">ca-app-pub-1845012817213961/1488254257</string>
 
     <string name="Privacy_Policy">https://drive.google.com/file/d/1XfdE8-4aBEMuBE0HfFKoITSLL3xM1NZJ/view?usp=sharing</string>
 </resources>
