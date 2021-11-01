@@ -1,4 +1,4 @@
-package com.onex.trending_wallpapers_2021;
+package com.onex.beautiful_wallpapers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.onex.trending_wallpapers_2021.R;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.onex.trending_wallpapers_2021;
+package com.onex.beautiful_wallpapers;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
-import com.onex.trending_wallpapers_2021.R;
 
 public class Exit_Screen extends Native_Ad_Class {
   Button btn_exit, btn_RateUs;

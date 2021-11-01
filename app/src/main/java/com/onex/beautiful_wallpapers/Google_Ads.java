@@ -1,4 +1,4 @@
-package com.onex.trending_wallpapers_2021;
+package com.onex.beautiful_wallpapers;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 
-import com.onex.trending_wallpapers_2021.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
