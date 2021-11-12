@@ -1,4 +1,4 @@
-package com.onex.beautiful_wallpapers;
+package com.onex.trending_wallpapers_2021;
 
 public class WallpaperModel {
     private int id;
